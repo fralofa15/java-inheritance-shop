@@ -8,6 +8,7 @@ public class Smartphone extends Prodotto {
                       String imei, int memoria) {
 
         super(codice, nome, marca, prezzo, iva);
+
         this.imei = imei;
         this.memoria = memoria;
     }
@@ -16,15 +17,24 @@ public class Smartphone extends Prodotto {
         return imei;
     }
 
-    public void setImei(String imei) {
-        this.imei = imei;
-    }
-
     public int getMemoria() {
         return memoria;
     }
 
-    public void setMemoria(int memoria) {
-        this.memoria = memoria;
+    @Override
+    public double getPrezzoScontato() {
+        if (memoria < 32) {
+            return getPrezzo() * 0.95;
+        }
+
+        return super.getPrezzoScontato();
+    }
+
+    @Override
+    public String toString() {
+        return "SMARTPHONE\n" +
+               super.toString() +
+               "\nIMEI: " + imei +
+               "\nMemoria: " + memoria + " GB";
     }
 }

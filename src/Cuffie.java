@@ -1,30 +1,40 @@
 public class Cuffie extends Prodotto {
 
     private String colore;
-    private boolean wireless;
+    private boolean cablate;
 
     public Cuffie(int codice, String nome, String marca,
                   double prezzo, double iva,
-                  String colore, boolean wireless) {
+                  String colore, boolean cablate) {
 
         super(codice, nome, marca, prezzo, iva);
+
         this.colore = colore;
-        this.wireless = wireless;
+        this.cablate = cablate;
     }
 
     public String getColore() {
         return colore;
     }
 
-    public void setColore(String colore) {
-        this.colore = colore;
+    public boolean isCablate() {
+        return cablate;
     }
 
-    public boolean isWireless() {
-        return wireless;
+    @Override
+    public double getPrezzoScontato() {
+        if (cablate) {
+            return getPrezzo() * 0.93;
+        }
+
+        return super.getPrezzoScontato();
     }
 
-    public void setWireless(boolean wireless) {
-        this.wireless = wireless;
+    @Override
+    public String toString() {
+        return "CUFFIE\n" +
+               super.toString() +
+               "\nColore: " + colore +
+               "\nCablate: " + cablate;
     }
 }

@@ -6,7 +6,8 @@ public class Prodotto {
     private double prezzo;
     private double iva;
 
-    public Prodotto(int codice, String nome, String marca, double prezzo, double iva) {
+    public Prodotto(int codice, String nome, String marca,
+                    double prezzo, double iva) {
         this.codice = codice;
         this.nome = nome;
         this.marca = marca;
@@ -22,35 +23,33 @@ public class Prodotto {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getMarca() {
         return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
     }
 
     public double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(double prezzo) {
-        this.prezzo = prezzo;
-    }
-
     public double getIva() {
         return iva;
     }
 
-    public void setIva(double iva) {
-        this.iva = iva;
+    public double getPrezzoConIva() {
+        return prezzo * (1 + iva / 100);
     }
 
-    public double getPrezzoConIva() {
-        return prezzo + (prezzo * iva / 100);
+    public double getPrezzoScontato() {
+        return prezzo * 0.98;
+    }
+
+    @Override
+    public String toString() {
+        return "Codice: " + codice +
+               "\nNome: " + nome +
+               "\nMarca: " + marca +
+               "\nPrezzo: " + prezzo + " euro" +
+               "\nIVA: " + iva + "%" +
+               "\nPrezzo con IVA: " + getPrezzoConIva();
     }
 }

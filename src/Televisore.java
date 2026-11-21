@@ -8,6 +8,7 @@ public class Televisore extends Prodotto {
                       int dimensioni, boolean smart) {
 
         super(codice, nome, marca, prezzo, iva);
+
         this.dimensioni = dimensioni;
         this.smart = smart;
     }
@@ -16,15 +17,24 @@ public class Televisore extends Prodotto {
         return dimensioni;
     }
 
-    public void setDimensioni(int dimensioni) {
-        this.dimensioni = dimensioni;
-    }
-
     public boolean isSmart() {
         return smart;
     }
 
-    public void setSmart(boolean smart) {
-        this.smart = smart;
+    @Override
+    public double getPrezzoScontato() {
+        if (!smart) {
+            return getPrezzo() * 0.90;
+        }
+
+        return super.getPrezzoScontato();
+    }
+
+    @Override
+    public String toString() {
+        return "TELEVISORE\n" +
+               super.toString() +
+               "\nDimensioni: " + dimensioni + " pollici" +
+               "\nSmart: " + smart;
     }
 }
